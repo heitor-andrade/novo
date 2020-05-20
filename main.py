@@ -1,6 +1,5 @@
 import pygame
 from board import Board
-#from rules import *
 from client import Client
 from utils import get_evento
 import pickle
@@ -19,7 +18,7 @@ pygame.display.update()
 print(client.receive())
 
 #CLIENT = 1 # "client1"
-CLIENT = 0 # "client2"
+#CLIENT = 0 # "client2"
 
 recebendo = False
 
