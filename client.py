@@ -7,7 +7,7 @@ class Client:
     PORT = 5050
     FORMAT = 'utf-8'
     DISCONNECT_MESSAGE = "!DISCONNECT"
-    SERVER = 'DESKTOP-TC231IV'
+    SERVER = '192.168.0.19'
     ADDR = (SERVER, PORT)
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

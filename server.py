@@ -6,8 +6,8 @@ import pickle # para serializar objetos e poder mandá-los
 
 HEADER = 10 # serve para descobrir o tamanho da mensagem, PODE SER PEQUENO
 PORT = 5050
-SERVER = 'DESKTOP-TC231IV'
-ADDR = ('DESKTOP-TC231IV', PORT)
+SERVER = socket.gethostbyname(socket.gethostname())
+ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
 
@@ -58,7 +58,7 @@ def handle_clients(conn1, addr1, conn2, addr2):
     conn2.close
 
 def start(): # recebe e divide os clientes
-    server.listen()
+    server.listen(5 )
     print(f"[LISTENING] Server is listening on {SERVER}")
     
     while True:
@@ -67,15 +67,18 @@ def start(): # recebe e divide os clientes
 
         thread = threading.Thread(target = handle_clients, args = (conn1, addr1, conn2, addr2))
         thread.start()
-        start_message = "comecou"
         
-        start_message = pickle.dumps(start_message)
-        
-        conn1.send(bytes(f'{len(start_message):<{HEADER}}', FORMAT))
-        conn1.send(start_message)
+        start_message1 = '1'
+        start_message2 = '0'
 
-        conn2.send(bytes(f'{len(start_message):<{HEADER}}', FORMAT))
-        conn2.send(start_message)
+        start_message1 = pickle.dumps(start_message1)
+        start_message2 = pickle.dumps(start_message2)
+        
+        conn1.send(bytes(f'{len(start_message1):<{HEADER}}', FORMAT))
+        conn1.send(start_message1)
+
+        conn2.send(bytes(f'{len(start_message2):<{HEADER}}', FORMAT))
+        conn2.send(start_message2)
         print("começou")
 
 

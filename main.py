@@ -15,10 +15,7 @@ run = True
 client = Client()
 pygame.display.update()
 
-print(client.receive())
-
-#CLIENT = 1 # "client1"
-#CLIENT = 0 # "client2"
+CLIENT = int(client.receive())
 
 recebendo = False
 
